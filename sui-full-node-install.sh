@@ -58,6 +58,7 @@ function check_os_version() {
     esac
 }
 
+# get docker-compose release
 function get_docker_compose_release() {
     curl --silent "https://api.github.com/repos/docker/compose/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")'
 }
@@ -90,6 +91,7 @@ function install_docker() {
     fi
 }
 
+# install docker-compose
 function install_docker_compose() {
     echo -e "\033[32m [INFO]: Start install docker-compose \033[0m"
     # install docker-compose
