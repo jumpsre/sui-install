@@ -38,11 +38,12 @@ echo -ne "\\033[m"
 
 # working dir
 SUI_INSTALL_PATH="/blockchain/sui/devtest"
+BACKUP_PATH="/blockchain/sui/backup/"
 
 # usage note
 function usage() {
     cat <<END
-    
+
     usage: $0 OPTIONS
 
     This script use install Sui Full Node and upgrade.
@@ -159,7 +160,11 @@ function check_sui_status() {
 function upgrade() {
     cd $SUI_INSTALL_PATH
     docker-compose down --volumes
-    cp -arp $SUI_INSTALL_PATH $SUI_INSTALL_PATH_$(date +%Y%m%d%H%M)
+    if [ ! -d $BACKUP_PATH ]
+    then
+        mkdir $BACKUP_PATH
+    fi
+    cp -arp $SUI_INSTALL_PATH $BACKUP_PATH_$(date +%Y%m%d%H%M)
     install_sui
     start_sui
 }
@@ -170,7 +175,7 @@ export -f install_sui
 export -f start_sui
 
 # start install
-case $1 in:
+case $1 in
     install)
         check_os_version
 
@@ -187,6 +192,7 @@ case $1 in:
     ;;
     upgrade)
         upgrade
+    ;;
     *)
         usage
     ;;
