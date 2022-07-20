@@ -51,9 +51,6 @@ function check_os_version() {
         *Ubuntu*)
             echo -e "\033[32m [INFO]: Ubuntu is Support \033[0m"
             ;;
-        *Debian*)
-            echo -e "\033[32m [INFO]: Debian is Support \033[0m"
-            ;;
         *)
             echo -e "\033[32m [INFO]: OS is not Support \033[0m"
             exit 1

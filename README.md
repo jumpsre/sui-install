@@ -5,7 +5,6 @@ The script is used to auto install sui full node.
 ## Support System
 
 * Ubuntu 18.04 TLS
-* Debian 11
 ## Usage
 
 ```bash
