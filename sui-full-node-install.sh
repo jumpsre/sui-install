@@ -165,8 +165,15 @@ function upgrade() {
         mkdir $BACKUP_PATH
     fi
     cp -arp ${SUI_INSTALL_PATH} ${BACKUP_PATH}$(date +%Y%m%d%H%M)
-    install_sui
+    wget -O ${SUI_INSTALL_PATH}/docker-compose.yaml https://raw.githubusercontent.com/MystenLabs/sui/main/docker/fullnode/docker-compose.yaml
+    wget -O ${SUI_INSTALL_PATH}/fullnode-template.yaml https://github.com/MystenLabs/sui/raw/main/crates/sui-config/data/fullnode-template.yaml
+    sed -i 's/127.0.0.1:9184/0.0.0.0:9184/' ${SUI_INSTALL_PATH}/fullnode-template.yaml
+    sed -i 's/127.0.0.1:9000/0.0.0.0:9000/' ${SUI_INSTALL_PATH}/fullnode-template.yaml
+    wget -O ${SUI_INSTALL_PATH}/genesis.blob https://github.com/MystenLabs/sui-genesis/raw/main/devnet/genesis.blob
     start_sui
+    sleep 10
+    check_sui_status
+
 }
 
 export -f install_docker
