@@ -164,7 +164,7 @@ function upgrade() {
     then
         mkdir $BACKUP_PATH
     fi
-    cp -arp $SUI_INSTALL_PATH $BACKUP_PATH_$(date +%Y%m%d%H%M)
+    cp -arp ${SUI_INSTALL_PATH} ${BACKUP_PATH}$(date +%Y%m%d%H%M)
     install_sui
     start_sui
 }
