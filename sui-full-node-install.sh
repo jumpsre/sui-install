@@ -152,7 +152,5 @@ check_os_version
 [ -x "$(command -v docker)" ] && echo -e "\033[33m [Warning]: Docker already exists,Skip installation \033[0m"  || install_docker
 [ -x "$(command -v docker-compose)" ] && echo -e "\033[33m [Warning]: Docker-compose already exists,Skip installation \033[0m"  || install_docker_compose
 check_sui_port=$(netstat -nltp | egrep "(9000|9184)" | wc -l)
-[[ ${check_sui_port} != 0 ]] && echo -e "\033[33m [Warning]: Sui Full Node already exists,Skip installation \033[0m" || (install_sui && start_sui && sleep 10 && check_sui_status)
-
-# end install
-# echo -e "\033[32m [INFO]: Sucess install Sui Full node \033[0m"
+[[ ${check_sui_port} != 0 ]] && echo -e "\033[33m [Warning]: Sui Full Node already exists,Skip installation \033[0m" || (install_sui && start_sui)
+echo -e "\033[33m [Info]: Sleep 10s Check Sui Status \033[0m" && sleep 10 && check_sui_status
