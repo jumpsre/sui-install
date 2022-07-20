@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # @Time    : 07/20/2022 4:00 PM
-# @Author  : DevOps
+# @Author  : iopssre
 # @File    : sui-full-node-install.sh
 # @Role    : install sui full node with script
 # @Version : 0.1
