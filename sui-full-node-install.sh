@@ -72,7 +72,7 @@ function install_docker() {
     then
         sudo mkdir -p /etc/apt/keyrings
     fi
-    
+
     if [ ! -f /etc/apt/keyrings/docker.gpg ]
     then
         curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
@@ -86,7 +86,7 @@ function install_docker() {
     # install docker
     if [ ! -x "$(command -v docker)" ]
     then
-        sudo apt install --yes docker-ce docker-ce-cli containerd.io docker-compose-plugin
+        sudo apt update && sudo apt install --yes docker-ce docker-ce-cli containerd.io docker-compose-plugin
     fi
 }
 
