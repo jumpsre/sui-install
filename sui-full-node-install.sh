@@ -39,14 +39,10 @@ echo -ne "\\033[m"
 # working dir
 SUI_INSTALL_PATH="/blockchain/sui/devtest"
 
-# install dependency packages
-echo -e "\033[32m [INFO]: Install the base dependencies, here apt update will be time consuming \033[0m"
-sudo apt-get update && DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC && apt-get install -y --no-install-recommends tzdata git ca-certificates curl build-essential libssl-dev  pkg-config libclang-dev cmake jq
-
-
 # usage note
 function usage() {
-    cat << 
+    cat <<END
+    
     usage: $0 OPTIONS
 
     This script use install Sui Full Node and upgrade.
@@ -54,7 +50,7 @@ function usage() {
     OPTIONS:
     install    Install Sui Full Node
     upgrade    Upgrade Sui Full Node
-    ENDF
+END
 }
 
 
@@ -177,6 +173,12 @@ export -f start_sui
 case $1 in:
     install)
         check_os_version
+
+        # install dependency packages
+        echo -e "\033[32m [INFO]: Install the base dependencies, here apt update will be time consuming \033[0m"
+        sudo apt-get update && DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC \
+            && apt-get install -y --no-install-recommends tzdata git ca-certificates curl build-essential libssl-dev  pkg-config libclang-dev cmake jq
+
         [ -x "$(command -v docker)" ] && echo -e "\033[33m [Warning]: Docker already exists,Skip installation \033[0m"  || install_docker
         [ -x "$(command -v docker-compose)" ] && echo -e "\033[33m [Warning]: Docker-compose already exists,Skip installation \033[0m"  || install_docker_compose
         check_sui_port=$(netstat -nltp | egrep "(9000|9184)" | wc -l)
