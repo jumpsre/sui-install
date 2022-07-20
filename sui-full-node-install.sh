@@ -43,6 +43,21 @@ SUI_INSTALL_PATH="/blockchain/sui/devtest"
 echo -e "\033[32m [INFO]: Install the base dependencies, here apt update will be time consuming \033[0m"
 sudo apt-get update && DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC && apt-get install -y --no-install-recommends tzdata git ca-certificates curl build-essential libssl-dev  pkg-config libclang-dev cmake jq
 
+
+# usage note
+function usage() {
+    cat << 
+    usage: $0 OPTIONS
+
+    This script use install Sui Full Node and upgrade.
+
+    OPTIONS:
+    install    Install Sui Full Node
+    upgrade    Upgrade Sui Full Node
+    ENDF
+}
+
+
 # check os version
 function check_os_version() {
     echo -e "\033[32m [INFO]: Check OS Version \033[0m"
@@ -144,15 +159,34 @@ function check_sui_status() {
     curl --location --request POST 'http://127.0.0.1:9000/'     --header 'Content-Type: application/json'     --data-raw '{ "jsonrpc":"2.0", "id":1, "method":"sui_getRecentTransactions", "params":[5] }' | jq
 }
 
+# upgrade
+function update() {
+    cd $SUI_INSTALL_PATH
+    docker-compose down --volumes
+    cp -arp $SUI_INSTALL_PATH $SUI_INSTALL_PATH_$(date +%Y%m%d%H%M)
+    install_sui
+    start_sui
+}
+
 export -f install_docker
 export -f install_docker_compose
 export -f install_sui
 export -f start_sui
 
 # start install
-check_os_version
-[ -x "$(command -v docker)" ] && echo -e "\033[33m [Warning]: Docker already exists,Skip installation \033[0m"  || install_docker
-[ -x "$(command -v docker-compose)" ] && echo -e "\033[33m [Warning]: Docker-compose already exists,Skip installation \033[0m"  || install_docker_compose
-check_sui_port=$(netstat -nltp | egrep "(9000|9184)" | wc -l)
-[[ ${check_sui_port} != 0 ]] && echo -e "\033[33m [Warning]: Sui Full Node already exists,Skip installation \033[0m" || (install_sui && start_sui)
-echo -e "\033[33m [Info]: Sleep 10s Check Sui Status \033[0m" && sleep 10 && check_sui_status
+case $1 in:
+    install)
+        check_os_version
+        [ -x "$(command -v docker)" ] && echo -e "\033[33m [Warning]: Docker already exists,Skip installation \033[0m"  || install_docker
+        [ -x "$(command -v docker-compose)" ] && echo -e "\033[33m [Warning]: Docker-compose already exists,Skip installation \033[0m"  || install_docker_compose
+        check_sui_port=$(netstat -nltp | egrep "(9000|9184)" | wc -l)
+        [[ ${check_sui_port} != 0 ]] && echo -e "\033[33m [Warning]: Sui Full Node already exists,Skip installation \033[0m" || (install_sui && start_sui)
+        echo -e "\033[33m [Info]: Sleep 10s Check Sui Status \033[0m" && sleep 10 && check_sui_status
+    ;;
+    upgrade)
+        update
+    *)
+        usage
+    ;;
+esac
+
