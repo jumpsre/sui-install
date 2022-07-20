@@ -160,7 +160,7 @@ function check_sui_status() {
 }
 
 # upgrade
-function update() {
+function upgrade() {
     cd $SUI_INSTALL_PATH
     docker-compose down --volumes
     cp -arp $SUI_INSTALL_PATH $SUI_INSTALL_PATH_$(date +%Y%m%d%H%M)
@@ -184,7 +184,7 @@ case $1 in:
         echo -e "\033[33m [Info]: Sleep 10s Check Sui Status \033[0m" && sleep 10 && check_sui_status
     ;;
     upgrade)
-        update
+        upgrade
     *)
         usage
     ;;
