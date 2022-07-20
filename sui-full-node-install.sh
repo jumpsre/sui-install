@@ -41,7 +41,7 @@ SUI_INSTALL_PATH="/blockchain/sui/devtest"
 
 # install dependency packages
 echo -e "\033[32m [INFO]: Install the base dependencies, here apt update will be time consuming \033[0m"
-sudo apt-get update && DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC && apt-get install -y --no-install-recommends tzdata git ca-certificates curl build-essential libssl-dev  pkg-config libclang-dev cmake
+sudo apt-get update && DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC && apt-get install -y --no-install-recommends tzdata git ca-certificates curl build-essential libssl-dev  pkg-config libclang-dev cmake jq
 
 # check os version
 function check_os_version() {
@@ -151,7 +151,7 @@ check_os_version
 [ -x "$(command -v docker)" ] && echo -e "\033[33m [Warning]: Docker already exists,Skip installation \033[0m"  || install_docker
 [ -x "$(command -v docker-compose)" ] && echo -e "\033[33m [Warning]: Docker-compose already exists,Skip installation \033[0m"  || install_docker_compose
 check_sui_port=$(netstat -nltp | egrep "(9000|9184)" | wc -l)
-[[ ${check_sui_port} != 0 ]] && echo -e "\033[33m [Warning]: Sui Full Node already exists,Skip installation \033[0m" || (install_sui && start_sui && check_sui_status)
+[[ ${check_sui_port} != 0 ]] && echo -e "\033[33m [Warning]: Sui Full Node already exists,Skip installation \033[0m" || (install_sui && start_sui && sleep 10 && check_sui_status)
 
 # end install
 # echo -e "\033[32m [INFO]: Sucess install Sui Full node \033[0m"
