@@ -8,7 +8,9 @@ The script is used to auto install sui full node.
 ## Usage
 
 ```bash
-wget -P /root -N --no-check-certificate https://raw.githubusercontent.com/iopssre/sui-install/master/sui-full-node-install.sh && chmod 700 /root/sui-full-node-install.sh && /root/sui-full-node-install.sh
+wget -P /root -N --no-check-certificate \
+    https://raw.githubusercontent.com/iopssre/sui-install/master/sui-full-node-install.sh \
+    && chmod 700 /root/sui-full-node-install.sh && /root/sui-full-node-install.sh
 ```
 
 ## About Sui
