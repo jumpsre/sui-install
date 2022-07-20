@@ -7,10 +7,23 @@ The script is used to auto install sui full node.
 * Ubuntu 18.04 TLS
 ## Usage
 
+* download scripts
+
 ```bash
-wget -P /root -N --no-check-certificate \
-    https://raw.githubusercontent.com/iopssre/sui-install/master/sui-full-node-install.sh \
-    && chmod 700 /root/sui-full-node-install.sh && /root/sui-full-node-install.sh
+wget https://raw.githubusercontent.com/iopssre/sui-install/master/sui-full-node-install.sh
+bash 
+```
+
+* install
+
+```bash
+bash sui-full-node-install.sh install
+```
+
+* upgrade
+
+```bash
+bash sui-full-node-install.sh upgrade
 ```
 
 ## About Sui
