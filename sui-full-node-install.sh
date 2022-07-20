@@ -92,7 +92,7 @@ function install_docker() {
 function install_docker_compose() {
     echo -e "\033[32m [INFO]: Start install docker-compose \033[0m"
     # install docker-compose
-    if [ -x "$(command -v docker-compose)" ]
+    if [ ! -x "$(command -v docker-compose)" ]
     then
         sudo curl -L https://github.com/docker/compose/releases/download/$(get_docker_compose_release)/docker-compose-$(uname -s)-$(uname -m) \
         -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
