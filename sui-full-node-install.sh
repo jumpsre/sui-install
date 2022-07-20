@@ -2,6 +2,7 @@
 # @Time    : 07/20/2022 4:00 PM
 # @Author  : iopssre
 # @File    : sui-full-node-install.sh
+# @github  : https://github.com/iopssre
 # @Role    : install sui full node with script
 # @Version : 0.1
 
