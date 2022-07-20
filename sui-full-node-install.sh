@@ -68,7 +68,11 @@ function install_docker() {
     # remove old package
     sudo apt remove --yes docker docker-engine docker.io containerd runc || true
     # config gpg key
-    [ ! -d /etc/apt/keyrings ] && sudo mkdir -p /etc/apt/keyrings
+    if [ ! -d /etc/apt/keyrings ]
+    then
+        sudo mkdir -p /etc/apt/keyrings
+    fi
+    
     if [ ! -f /etc/apt/keyrings/docker.gpg ]
     then
         curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
