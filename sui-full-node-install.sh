@@ -144,6 +144,7 @@ function start_sui() {
     if [ $PWD != $SUI_INSTALL_PATH ]
     then
         cd $SUI_INSTALL_PATH
+        docker pull mysten/sui-node:stable
         docker-compose up -d
     else
         docker-compose up -d

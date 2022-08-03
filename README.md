@@ -11,7 +11,6 @@ The script is used to auto install sui full node.
 
 ```bash
 wget https://raw.githubusercontent.com/iopssre/sui-install/master/sui-full-node-install.sh
-bash 
 ```
 
 * install
