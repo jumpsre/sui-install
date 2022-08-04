@@ -193,7 +193,8 @@ case $1 in
         # install dependency packages
         echo -e "\033[32m [INFO]: Install the base dependencies, here apt update will be time consuming \033[0m"
         sudo apt-get update && DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC \
-            && apt-get install -y --no-install-recommends tzdata git ca-certificates curl build-essential libssl-dev  pkg-config libclang-dev cmake jq
+            && apt-get install -y --no-install-recommends \
+            tzdata git ca-certificates curl build-essential libssl-dev  pkg-config libclang-dev cmake jq
 
         [ -x "$(command -v docker)" ] && echo -e "\033[33m [Warning]: Docker already exists,Skip installation \033[0m"  || install_docker
         [ -x "$(command -v docker-compose)" ] && echo -e "\033[33m [Warning]: Docker-compose already exists,Skip installation \033[0m"  || install_docker_compose
