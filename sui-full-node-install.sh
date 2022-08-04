@@ -155,7 +155,9 @@ function start_sui() {
 # check sui full node
 function check_sui_status() {
     echo -e "\033[32m [INFO]: Start Sui Check \033[0m"
-    curl --location --request POST 'http://127.0.0.1:9000/'     --header 'Content-Type: application/json'     --data-raw '{ "jsonrpc":"2.0", "id":1, "method":"sui_getRecentTransactions", "params":[5] }' | jq
+    curl --location --request POST 'http://127.0.0.1:9000/' \
+        --header 'Content-Type: application/json' \
+        --data-raw '{ "jsonrpc":"2.0", "id":1, "method":"sui_getRecentTransactions", "params":[5] }' | jq
 }
 
 # upgrade
