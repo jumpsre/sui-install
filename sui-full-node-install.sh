@@ -141,10 +141,11 @@ function install_sui() {
 # start sui full node
 function start_sui() {
     echo -e "\033[32m [INFO]: Start Docker Compose \033[0m"
+    echo -e "\03[32m [INFO]: Check docker images is upgrade"
+    docker pull mysten/sui-node:stable
     if [ $PWD != $SUI_INSTALL_PATH ]
     then
         cd $SUI_INSTALL_PATH
-        docker pull mysten/sui-node:stable
         docker-compose up -d
     else
         docker-compose up -d
