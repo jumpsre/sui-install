@@ -30,11 +30,12 @@ cat<<EOT
                 ====='-.____'.___ \\_____/___.-'____.-'=====
                                   '=---='
               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-                Recommend OS                 Ubuntu 18.04 TLS
-                Recommend Hardware           8C 32G
-                Recommend Disk               >=128G SSD
-                Support   Team               Move Chinese Community
-                Move Chinese Discord         https://discord.gg/D7R2TtmkTm
+                Script    Uses        install and upgrade Sui
+                Recommend OS          Ubuntu 18.04 TLS
+                Recommend Hardware    >= 8C 32G
+                Recommend Disk        >= 128G SSD
+                Support   Team        Move Chinese Community
+                Move      Discord     https://discord.gg/D7R2TtmkTm
               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 EOT
