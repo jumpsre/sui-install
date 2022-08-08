@@ -31,8 +31,10 @@ cat<<EOT
                                   '=---='
               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                 Recommend OS                 Ubuntu 18.04 TLS
-                Recommend Hardware           2C 8G
-                Recommend Disk               >=50G
+                Recommend Hardware           8C 32G
+                Recommend Disk               >=128G SSD
+                Support   Team               Move Chinese Community
+                Move Chinese Discord         https://discord.gg/D7R2TtmkTm
               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 EOT
