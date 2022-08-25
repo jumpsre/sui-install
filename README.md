@@ -10,7 +10,7 @@ The script is used to auto install sui full node.
 * download scripts
 
 ```bash
-wget https://raw.githubusercontent.com/iopssre/sui-install/master/sui-full-node-install.sh
+wget https://raw.githubusercontent.com/jumpsre/sui-install/master/sui-full-node-install.sh
 ```
 
 * install
